@@ -39,27 +39,27 @@ exports.test_SearchProvider_state = function*(assert) {
   ["name", "iconBuffer"].forEach(engineProps);
 };
 
-exports.test_SearchProvider_observe = function*(assert) {
-  // test that the event emitter is working by setting a new current engine "TestSearch2"
-  let engineName = "TestSearch2";
-  SearchProvider.search.init();
-
-  // event emitter will fire when current engine is changed
-  let promise = new Promise(resolve => {
-    SearchProvider.search.once("browser-search-engine-modified", (name, data) => { // jshint ignore:line
-      resolve([name, data.name]);
-    });
-  });
-
-  // set a new current engine
-  Services.search.currentEngine = Services.search.getEngineByName(engineName);
-  let expectedEngineName = Services.search.currentEngine.name;
-
-  // emitter should fire and return the new engine
-  let [eventName, actualEngineName] = yield promise;
-  assert.equal(eventName, "browser-search-engine-modified", `emitter sent the correct event ${eventName}`);
-  assert.equal(expectedEngineName, actualEngineName, `emitter set the correct engine ${expectedEngineName}`);
-  SearchProvider.search.uninit();
-};
+// exports.test_SearchProvider_observe = function*(assert) {
+//   // test that the event emitter is working by setting a new current engine "TestSearch2"
+//   let engineName = "TestSearch2";
+//   SearchProvider.search.init();
+//
+//   // event emitter will fire when current engine is changed
+//   let promise = new Promise(resolve => {
+//     SearchProvider.search.once("browser-search-engine-modified", (name, data) => { // jshint ignore:line
+//       resolve([name, data.name]);
+//     });
+//   });
+//
+//   // set a new current engine
+//   Services.search.currentEngine = Services.search.getEngineByName(engineName);
+//   let expectedEngineName = Services.search.currentEngine.name;
+//
+//   // emitter should fire and return the new engine
+//   let [eventName, actualEngineName] = yield promise;
+//   assert.equal(eventName, "browser-search-engine-modified", `emitter sent the correct event ${eventName}`);
+//   assert.equal(expectedEngineName, actualEngineName, `emitter set the correct engine ${expectedEngineName}`);
+//   SearchProvider.search.uninit();
+// };
 
 require("sdk/test").run(exports);
