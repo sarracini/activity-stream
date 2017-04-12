@@ -1,0 +1,48 @@
+.search-wrapper {
+  cursor: default;
+  display: flex;
+  position: relative;
+  margin: 0 0 $search-margin-bottom;
+  width: 100%;
+  height: $search-height;
+
+  .search-label {
+    background: $search-glyph-image no-repeat center center / $search-glyph-size;
+    position: absolute;
+    top: 0;
+    offset-inline-start: 0;
+    height: 100%;
+    width: $search-input-left-label-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  input {
+    @include search-input;
+    padding-inline-start: 35px;
+  }
+
+  button {
+    margin-inline-start: -50px;
+    border: none;
+    width: $search-button-width;
+    transition: box-shadow 150ms;
+    background: transparent url('#{$image-path}glyph-forward.svg') no-repeat center center;
+    background-size: 16px 16px;
+    border-radius: 0 $search-border-radius $search-border-radius 0;
+    cursor: pointer;
+  }
+
+  input:focus + button,
+  button:hover {
+    z-index: 1;
+    border-color: $search-blue;
+    transition: box-shadow 150ms;
+    box-shadow: $search-shadow;
+    background-color: $search-blue;
+    background-image: url('#{$image-path}glyph-forward-white.svg');
+    color: $white;
+  }
+}
