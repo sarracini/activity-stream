@@ -37,35 +37,3 @@ $section-title-color: #6E707E;
 $section-title-bottom-margin: 18px;
 
 $image-path: 'assets/';
-
-$search-border-radius: 3px;
-$search-margin-bottom: 62px;
-$search-height: 38px;
-$search-width: 768px;
-$search-input-left-label-width: 35px;
-$search-blue: #0A84FF;
-$search-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);;
-$search-button-width: 52px;
-$search-glyph-image: url('#{$image-path}glyph-search.svg');
-$search-glyph-size: 20px;
-
-@mixin search-input {
-  box-sizing: border-box;
-  width: $search-width;
-  border: 1px solid $faintest-black;
-  border-radius: $search-border-radius;
-  background-color: $white;
-  box-shadow: 0 1px 4px 0 $faintest-black;
-  margin: 0;
-  outline: none;
-  height: 100%;
-  padding-inline-start: $search-input-left-label-width;
-  padding: 0 12px 0 $search-input-left-label-width;
-
-  &:focus {
-    border-color: $search-blue;
-    box-shadow: $search-shadow;
-    transition: box-shadow 150ms;
-    z-index: 1;
-  }
-}
