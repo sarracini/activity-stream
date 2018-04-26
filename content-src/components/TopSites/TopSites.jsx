@@ -104,6 +104,7 @@ export class _TopSites extends React.PureComponent {
 
     return (<ComponentPerfTimer id="topsites" initialized={props.TopSites.initialized} dispatch={props.dispatch}>
       <CollapsibleSection
+        showViewMore={true}
         className="top-sites"
         icon="topsites"
         id="topsites"

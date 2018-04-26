@@ -1,0 +1,56 @@
+.thin-card-outer {
+  width: 800px;
+  height: 94px;
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: 0 1px 4px 0 $grey-90-10;
+  margin-bottom: 10px;
+
+  .thin-card {
+    display: flex;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 100%;
+    color: inherit;
+
+    .thin-card-icon {
+      width: 48px;
+      height: 48px;
+      background-color: $grey-90-10;
+    }
+
+    .thin-card-details {
+      flex: 1;
+      margin-right: 50px;
+
+      .thin-card-details-hostname {
+        text-transform: uppercase;
+        font-size: 10px;
+        color: $grey-50;
+        overflow: hidden;
+        padding-bottom: 4px;
+      }
+
+      .thin-card-details-title {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: $card-text-line-height;
+        height: $card-text-line-height;
+        margin: 0 0 $card-title-margin;
+        word-wrap: break-word;
+        overflow: hidden;
+      }
+
+      .thin-card-details-description {
+        font-size: 12px;
+        line-height: $card-text-line-height;
+        height: $card-text-line-height;
+        margin: 0;
+        overflow: hidden;
+        word-wrap: break-word;
+      }
+    }
+  }
+}

@@ -177,6 +177,7 @@ export class Section extends React.PureComponent {
     // <section> <-- HTML5 element
     return (<ComponentPerfTimer {...this.props}>
       <CollapsibleSection className={sectionClassName} icon={icon}
+        showViewMore={id !== "topstories"}
         title={title}
         id={id}
         eventSource={eventSource}

@@ -91,6 +91,9 @@ this.AboutPreferences = class AboutPreferences {
       case at.OPEN_WEBEXT_SETTINGS:
         action._target.browser.ownerGlobal.BrowserOpenAddonsMgr(`addons://detail/${encodeURIComponent(action.data)}`);
         break;
+      case at.LIBRARY_OPEN:
+        action._target.browser.ownerGlobal.openTrustedLinkIn(`about:library#${action.data.param}`, "tab");
+        break;
     }
   }
 

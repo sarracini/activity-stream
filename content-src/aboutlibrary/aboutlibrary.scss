@@ -1,0 +1,86 @@
+@import '../styles/normalize';
+@import '../styles/variables';
+@import './components/ThinCard/ThinCard';
+@import './components/TopSite/TopSite';
+
+html {
+  height: 100%;
+}
+
+body {
+  background: $grey-10;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  overflow-y: scroll;
+}
+
+h1,
+h2 {
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+.library-wrapper {
+  display: flex;
+  padding-top: 50px;
+
+  .library-sidebar {
+    width: 240px;
+
+    ul {
+      list-style-type: none;
+
+      li {
+        outline: none;
+        padding-left: 10px;
+        font-size: 1.07em;
+        cursor: default;
+        min-height: 48px;
+        line-height: 48px;
+
+        &:hover {
+          background: $grey-90-10;
+          border-radius: 2px;
+        }
+
+        &:focus, &.active {
+          color: $blue-50;
+          .icon {
+            fill: $blue-50;
+          }
+        }
+      }
+    }
+    .icon {
+      background-position: center center;
+      background-repeat: none;
+      background-size: 24px;
+      -moz-context-properties: fill;
+      display: inline-block;
+      fill: $grey-90-80;
+      height: 24px;
+      vertical-align: middle;
+      width: 24px;
+
+      &.icon-spacer {
+        margin-inline-end: 9px;
+      }
+
+      &.icon-highlights {
+        background-image: url("resource://activity-stream/data/content/assets/glyph-highlights-16.svg");
+      }
+
+      &.icon-topsites {
+        background-image: url("resource://activity-stream/data/content/assets/glyph-topsites-16.svg");
+      }
+    }
+  }
+
+  .library-content {
+    padding-left: 40px;
+    flex: 1;
+  }
+}

@@ -5,6 +5,7 @@
   transition-property: background-color;
 
   .section-title {
+    display: flex;
     font-size: $section-title-font-size;
     font-weight: bold;
     margin: 0;
@@ -23,9 +24,23 @@
       white-space: nowrap;
     }
 
-    .collapsible-arrow {
-      margin-inline-start: 8px;
-      margin-top: -1px;
+    .view-more {
+      margin-inline-start: 20px;
+      opacity: 0;
+      cursor: pointer;
+      font-weight: normal;
+
+      span {
+        text-transform: none;
+        vertical-align: top;
+        color: var(--newtab-section-header-text-color);
+
+        &.collapsible-arrow {
+          margin-inline-start: 5px;
+          margin-top: 2px;
+          vertical-align: baseline;
+        }
+      }
     }
   }
 
@@ -67,6 +82,9 @@
   &.active {
     .section-top-bar {
       .context-menu-button {
+        opacity: 1;
+      }
+      .view-more {
         opacity: 1;
       }
     }

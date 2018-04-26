@@ -28,6 +28,7 @@ const {TopStoriesFeed} = ChromeUtils.import("resource://activity-stream/lib/TopS
 const {HighlightsFeed} = ChromeUtils.import("resource://activity-stream/lib/HighlightsFeed.jsm", {});
 const {ThemeFeed} = ChromeUtils.import("resource://activity-stream/lib/ThemeFeed.jsm", {});
 const {ASRouterFeed} = ChromeUtils.import("resource://activity-stream/lib/ASRouterFeed.jsm", {});
+const {AboutLibrary} = ChromeUtils.import("resource:///modules/AboutLibrary.jsm", {});
 
 const DEFAULT_SITES = new Map([
   // This first item is the global list fallback for any unexpected geos
@@ -271,6 +272,12 @@ const FEEDS_DATA = [
     name: "asrouterfeed",
     factory: () => new ASRouterFeed(),
     title: "Handles AS Router messages, such as snippets and onboaridng",
+    value: true
+  },
+  {
+    name: "library",
+    factory: () => new AboutLibrary(),
+    title: "Handles the about:library messages",
     value: true
   }
 ];

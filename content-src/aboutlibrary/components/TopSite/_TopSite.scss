@@ -1,0 +1,29 @@
+.top-sites-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  width: 740px;
+
+  .top-site-outer {
+    width: 96px;
+    height: 96px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px 0 $grey-90-10;
+    margin-bottom: 10px;
+    text-align: center;
+
+    .top-site {
+      > img {
+        border-radius: 6px;
+        box-shadow: 0 1px 4px 0 $grey-90-10;
+      }
+
+      .top-site-title {
+        color: black;
+        font-size: 11px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

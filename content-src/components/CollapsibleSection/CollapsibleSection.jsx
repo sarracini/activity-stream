@@ -1,9 +1,8 @@
+import {actionCreators as ac, actionTypes as at} from "common/Actions.jsm";
 import {FormattedMessage, injectIntl} from "react-intl";
-import {actionCreators as ac} from "common/Actions.jsm";
 import {ErrorBoundary} from "content-src/components/ErrorBoundary/ErrorBoundary";
 import React from "react";
 import {SectionMenu} from "content-src/components/SectionMenu/SectionMenu";
-import {SectionMenuOptions} from "content-src/lib/section-menu-options";
 
 const VISIBLE = "visible";
 const VISIBILITY_CHANGE_EVENT = "visibilitychange";
@@ -92,25 +91,7 @@ export class _CollapsibleSection extends React.PureComponent {
   }
 
   onHeaderClick() {
-    // If this.sectionBody is unset, it means that we're in some sort of error
-    // state, probably displaying the error fallback, so we won't be able to
-    // compute the height, and we don't want to persist the preference.
-    // If props.collapsed is undefined handler shouldn't do anything.
-    if (!this.sectionBody || this.props.collapsed === undefined) {
-      return;
-    }
-
-    // Get the current height of the body so max-height transitions can work
-    this.setState({
-      isAnimating: true,
-      maxHeight: `${this.sectionBody.scrollHeight}px`
-    });
-    const {action, userEvent} = SectionMenuOptions.CheckCollapsed(this.props);
-    this.props.dispatch(action);
-    this.props.dispatch(ac.UserEvent({
-      event: userEvent,
-      source: this.props.source
-    }));
+    this.props.dispatch(ac.OnlyToMain({type: at.LIBRARY_OPEN, data: {param: this.props.id}}));
   }
 
   onTransitionEnd(event) {
@@ -148,7 +129,7 @@ export class _CollapsibleSection extends React.PureComponent {
   render() {
     const isCollapsible = this.props.collapsed !== undefined;
     const {enableAnimation, isAnimating, maxHeight, menuButtonHover, showContextMenu} = this.state;
-    const {id, eventSource, collapsed, disclaimer, title, extraMenuOptions, showPrefName, privacyNoticeURL, dispatch, isFirst, isLast, isWebExtension} = this.props;
+    const {id, showViewMore, eventSource, collapsed, disclaimer, title, extraMenuOptions, showPrefName, privacyNoticeURL, dispatch, isFirst, isLast, isWebExtension} = this.props;
     const disclaimerPref = `section.${id}.showDisclaimer`;
     const needsDisclaimer = disclaimer && this.props.Prefs.values[disclaimerPref];
     const active = menuButtonHover || showContextMenu;
@@ -159,11 +140,11 @@ export class _CollapsibleSection extends React.PureComponent {
         data-section-id={id}>
         <div className="section-top-bar">
           <h3 className="section-title">
-            <span className="click-target" onClick={this.onHeaderClick}>
-              {this.renderIcon()}
-              {getFormattedMessage(title)}
-              {isCollapsible && <span className={`collapsible-arrow icon ${collapsed ? "icon-arrowhead-forward-small" : "icon-arrowhead-down-small"}`} />}
-            </span>
+            {this.renderIcon()}
+            {getFormattedMessage(title)}
+            {showViewMore && <div onClick={this.onHeaderClick} className="view-more">
+            <FormattedMessage id="view_more" />
+            {isCollapsible && <span className={`collapsible-arrow icon icon-arrowhead-forward-small`} />}</div>}
           </h3>
           <div>
             <button
