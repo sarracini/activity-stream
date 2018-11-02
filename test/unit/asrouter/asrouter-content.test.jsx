@@ -40,10 +40,14 @@ describe("ASRouterUISurface", () => {
   let wrapper;
   let global;
   let sandbox;
+  let fakeStore;
   let fakeDocument;
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
+    fakeStore = {
+      dispatch: () => {},
+    };
     fakeDocument = {
       location: {href: ""},
       _listeners: new Set(),
@@ -74,7 +78,7 @@ describe("ASRouterUISurface", () => {
 
     sandbox.stub(ASRouterUtils, "sendTelemetry");
 
-    wrapper = mount(<ASRouterUISurface document={fakeDocument} />);
+    wrapper = mount(<ASRouterUISurface activitystreamstore={fakeStore} document={fakeDocument} />);
   });
 
   afterEach(() => {

@@ -49,6 +49,7 @@ export class _StartupOverlay extends React.PureComponent {
     // to trigger the animation.
     setTimeout(() => {
       this.setState({show: true});
+      this.props.onFinished();
     }, 10);
   }
 
@@ -56,6 +57,7 @@ export class _StartupOverlay extends React.PureComponent {
     window.removeEventListener("visibilitychange", this.removeOverlay);
     document.body.classList.remove("hide-main");
     this.setState({show: false});
+    this.props.onBlock();
     setTimeout(() => {
       // Allow scrolling and fully remove overlay after animation finishes.
       document.body.classList.remove("welcome");
