@@ -7,12 +7,25 @@ ChromeUtils.import("resource://gre/modules/FxAccountsConfig.jsm");
 ChromeUtils.import("resource:///modules/AttributionCode.jsm");
 ChromeUtils.import("resource://gre/modules/addons/AddonRepository.jsm");
 
+function containsEncodedComponents(x) {
+  return (decodeURI(x) !== decodeURIComponent(x));
+}
+
 async function getAddonName() {
   try {
-    const {content} = await AttributionCode.getAttrDataAsync();
+    let {content} = await AttributionCode.getAttrDataAsync();
     if (!content) {
       return null;
     }
+
+    // Windows is double encoded - so we need to decode twice
+    if (containsEncodedComponents(content)) {
+      content = decodeURIComponent(content);
+      if (containsEncodedComponents(content)) {
+        content = decodeURIComponent(content);
+      }
+    }
+
     const addons = await AddonRepository.getAddonsByIDs([content]);
     return addons[0].name;
   } catch (e) {
